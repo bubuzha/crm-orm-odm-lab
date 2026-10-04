@@ -97,8 +97,20 @@ ODM: mapea documentos de una base documental a objetos. La libreria es Mongoose.
 Diferencia: el ORM trabaja con esquemas y relaciones rígidas impuestas por la base de datos, mientras que el ODM trabaja con documentos flexibles y el esquema solo vive en la aplicación.
 
 **3. Configuración por variables de entorno.**
+Donde se definen: en .devcontainer/docker-compose.yml, en la sección environment del servicio app. Los archivos .js solo las leen con process.env
+Por qué es mala práctica escribirlas en los .js: como el codigo se sube en git las credenciales quedarian expuestas en el repo
+Hosts que usa la app:
+    DB_HOST=postgres
+    MONGODB_URI=mongodb://mongo:27017/crm
+Por qué no son localhost: porque PostgreSQL y MongoDB corren en contenedores distintos al de la app
 **4. Asocioaciones.**
+Relación: uno a muchos.
+Llave foránea: companyId
+Alias as: 'contacts': es el nombre con el que se accede a la relación
 **5. Eager loading.**
+Dos consultas: primero se trae la compañía y luego los contactos con otra consulta
+Con include: Sequelize trae todo en una sola consulta y arma el objeto con sus contacts anidados.
+Preferible: include, porque hace menos viajes a la base de datos y el codigo es mas simple.
 **6. Instancia vs consulta.**
 **7. Esquema flexible.**
 **8. Sin ref.**
