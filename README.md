@@ -89,14 +89,24 @@ Los errores se devuelven como JSON: `{ "error": "Contact not found" }`.
 
 ## Respuestas
 **1. Dos motores.**
-Tu respuesta...
-**2. ORM vs ODM.**
-Tu respuesta...
-**3. Configuración por variables de entorno.**
-Tu respuesta...
+Activity es bueno para una base documental porque su metadata cambia segun el tipo que sea. Company y contact tienen una estructura mas fija, utilizan llaves foraneas y permite consultas con joins.
 
+**2. ORM vs ODM.**
+ORM: mapea tablas relacionales a objetos. La libreria es Sequelize.
+ODM: mapea documentos de una base documental a objetos. La libreria es Mongoose.
+Diferencia: el ORM trabaja con esquemas y relaciones rígidas impuestas por la base de datos, mientras que el ODM trabaja con documentos flexibles y el esquema solo vive en la aplicación.
+
+**3. Configuración por variables de entorno.**
+**4. Asocioaciones.**
+**5. Eager loading.**
+**6. Instancia vs consulta.**
+**7. Esquema flexible.**
+**8. Sin ref.**
+**9. Documento actualizado.**
+**10. Pruebas de comportamiento.**
 **11. Repetibilidad.**
-Tu respuesta...
+**12. Tu experiencia.**
+
 
 
 ## Evidencia
