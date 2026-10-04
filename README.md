@@ -131,10 +131,17 @@ Consecuencia: MongoDb no valida los ids y no los marca como existentes y no reac
 Que devolvia antes: El documento sin actualizar pues la actualizacion si se guardaba en la base de datos pero la respuesta mostraba el estado viejo. Esto pasa porque, por defecto, findByIdAndUpdate devuelve el documento tal como estaba antes del cambio.
 Qué cambié: agregué la opción new: true(que le indica a Mongoose que devuelva el documento ya modificado) y runValidators: true para que las validaciones del esquema se apliquen en la actualización.
 **10. Pruebas de comportamiento.**
+Permite cambiar la implementación sin romper las pruebas. Da igual si usas findAll, find o una consulta SQL: mientras el resultado sea el correcto, la prueba pasa.
+
 **11. Repetibilidad.**
+Antes (beforeAll): conecta con PostgreSQL y MongoDB, y ejecuta reset(), que restablece los datos semilla.
+Después (afterAll): cierra ambas conexiones.
+Es necesario porque varias pruebas modifican datos (PUT, POST). Sin el reset(), una suite heredaría los cambios de la anterior y los resultados variarían entre ejecuciones
+
 **12. Tu experiencia.**
-
-
+El 8 se me hizo el mas complicado de realizar.
+lo resolví agregando new: true (y runValidators: true).
+Mensaje de fallo: Expected: "Llamada actualizada" Received: "Llamada de seguimiento"
 
 ## Evidencia
 ![npm test con las 9 suites en verde](imagen)
