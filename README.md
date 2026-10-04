@@ -128,6 +128,8 @@ Porque no se pueden usar ref/populate: porque solo funcionan entre colecciones d
 Consecuencia: MongoDb no valida los ids y no los marca como existentes y no reacciona a cambios en PostgreSQL.
 
 **9. Documento actualizado.**
+Que devolvia antes: El documento sin actualizar pues la actualizacion si se guardaba en la base de datos pero la respuesta mostraba el estado viejo. Esto pasa porque, por defecto, findByIdAndUpdate devuelve el documento tal como estaba antes del cambio.
+Qué cambié: agregué la opción new: true(que le indica a Mongoose que devuelva el documento ya modificado) y runValidators: true para que las validaciones del esquema se apliquen en la actualización.
 **10. Pruebas de comportamiento.**
 **11. Repetibilidad.**
 **12. Tu experiencia.**
