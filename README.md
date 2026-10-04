@@ -144,4 +144,5 @@ lo resolví agregando new: true (y runValidators: true).
 Mensaje de fallo: Expected: "Llamada actualizada" Received: "Llamada de seguimiento"
 
 ## Evidencia
-![npm test con las 9 suites en verde](imagen)
+![npm test con las 9 suites en verde]
+<img width="493" height="401" alt="image" src="https://github.com/user-attachments/assets/1936480b-4378-494c-87a5-7471e58a6860" />
