@@ -105,7 +105,7 @@ Hosts que usa la app:
     MONGODB_URI=mongodb://mongo:27017/crm
 Por qué no son localhost: porque PostgreSQL y MongoDB corren en contenedores distintos al de la app.
 
-**4. Asocioaciones.**
+**4. Asociaciones.**
 Relación: uno a muchos. Una compañía tiene muchos contactos (Company.hasMany(Contact)) y cada contacto pertenece a una sola compañía (Contact.belongsTo(Company)).
 Llave foránea: companyId que vive en la tabla contacts.
 Alias as: 'contacts': es el nombre con el que se accede a la relación. Se usa en el include y es la propiedad que aparece en el JSON (company.contacts).
@@ -114,9 +114,17 @@ Alias as: 'contacts': es el nombre con el que se accede a la relación. Se usa e
 Dos consultas: primero se trae la compañía y luego los contactos con otra consulta
 Con include: Sequelize trae todo en una sola consulta y arma el objeto con sus contacts anidados.
 Preferible: include, porque hace menos viajes a la base de datos y el codigo es mas simple.
+
 **6. Instancia vs consulta.**
+
 **7. Esquema flexible.**
+Tipo de dato: se usa mongoose.Schema.Types.Mixed, que acepta cualquier valor u objeto. Por eso una CALL puede guardar { duration }, un EMAIL { subject } y un MEETING { attendees:[]}.
+Desventaja: Mongoose no valida ni convierte los campos de metadata. 
+
 **8. Sin ref.**
+Porque no se pueden usar ref/populate: porque solo funcionan entre colecciones de MongoDB.
+Consecuencia: MongoDb no valida los ids y no los marca como existentes y no reacciona a cambios en PostgreSQL.
+
 **9. Documento actualizado.**
 **10. Pruebas de comportamiento.**
 **11. Repetibilidad.**
