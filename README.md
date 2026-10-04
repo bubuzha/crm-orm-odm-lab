@@ -88,6 +88,7 @@ Cada suite restablece PostgreSQL y MongoDB antes de ejecutarse y cierra las cone
 Los errores se devuelven como JSON: `{ "error": "Contact not found" }`.
 
 ## Respuestas
+
 **1. Dos motores.**
 Activity es bueno para una base documental porque su metadata cambia segun el tipo que sea. Company y contact tienen una estructura mas fija, utilizan llaves foraneas y permite consultas con joins.
 
@@ -102,11 +103,13 @@ Por qué es mala práctica escribirlas en los .js: como el codigo se sube en git
 Hosts que usa la app:
     DB_HOST=postgres
     MONGODB_URI=mongodb://mongo:27017/crm
-Por qué no son localhost: porque PostgreSQL y MongoDB corren en contenedores distintos al de la app
+Por qué no son localhost: porque PostgreSQL y MongoDB corren en contenedores distintos al de la app.
+
 **4. Asocioaciones.**
-Relación: uno a muchos.
-Llave foránea: companyId
-Alias as: 'contacts': es el nombre con el que se accede a la relación
+Relación: uno a muchos. Una compañía tiene muchos contactos (Company.hasMany(Contact)) y cada contacto pertenece a una sola compañía (Contact.belongsTo(Company)).
+Llave foránea: companyId que vive en la tabla contacts.
+Alias as: 'contacts': es el nombre con el que se accede a la relación. Se usa en el include y es la propiedad que aparece en el JSON (company.contacts).
+
 **5. Eager loading.**
 Dos consultas: primero se trae la compañía y luego los contactos con otra consulta
 Con include: Sequelize trae todo en una sola consulta y arma el objeto con sus contacts anidados.
