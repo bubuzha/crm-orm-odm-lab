@@ -116,6 +116,8 @@ Con include: Sequelize trae todo en una sola consulta y arma el objeto con sus c
 Preferible: include, porque hace menos viajes a la base de datos y el codigo es mas simple.
 
 **6. Instancia vs consulta.**
+Buscar y modificar devuelve la instancia ya actualziada, ejecuta las validaciones del modelo y te dejo devolver 404 si el registro no existe
+Model.update({...}, {where }) directo hace una sola consulta UPDATE y es mas eficiente pero no devuelve el registro, solo el numero de filas afectadas.
 
 **7. Esquema flexible.**
 Tipo de dato: se usa mongoose.Schema.Types.Mixed, que acepta cualquier valor u objeto. Por eso una CALL puede guardar { duration }, un EMAIL { subject } y un MEETING { attendees:[]}.
